@@ -3,7 +3,6 @@ import { createConnection } from 'typeorm'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import { Request, Response } from 'express'
-import { GraphQLServer } from 'graphql-yoga'
 
 import { Routes } from './routes'
 
@@ -36,20 +35,6 @@ createConnection()
 			)
 		})
 
-		//Graphql Connection Here
-		const typeDefs = `
-		type Query{
-			hello(name: String): String!
-		}
-		`
-		const resolvers = {
-			Query: {
-				hello: (_: any, { name }: any) => `Hello ${name || 'World'}`,
-			},
-		}
-
-		const server = new GraphQLServer({ typeDefs, resolvers })
-		server.start(() => console.log('Server is runnings'))
 		// setup express app here
 		// ...
 
