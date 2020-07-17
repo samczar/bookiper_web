@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { createConnection } from 'typeorm'
 
-import { api } from './api/index'
+import { app } from './api/index'
 
 createConnection()
 	.then(async (connection) => {
@@ -32,7 +32,7 @@ createConnection()
 		// ...
 
 		// start express server
-		api.listen(5000)
+		app.listen(5000)
 
 		console.log('Express server has started on port 5000.')
 	})
