@@ -1,8 +1,11 @@
 import { Request, Response } from 'express'
 
+import { AuthorService } from '../../../services/author'
+
 module.exports = async (req: Request, res: Response) => {
 	try {
-		await res.status(200).send({ info: req.params.id + 'Find Author' })
+		const record = await new AuthorService().findById(req.params.id)
+		return res.status(200).send(record)
 	} catch (error) {
 		res.send(error)
 	}
